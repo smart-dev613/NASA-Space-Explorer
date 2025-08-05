@@ -1,0 +1,26 @@
+services:
+  # Backend API Service
+  - type: web
+    name: nasa-app-backend
+    env: node
+    plan: free
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000
+      - key: NASA_API_KEY
+        sync: false  # You'll need to set this in Render dashboard
+
+  # Frontend Web Service
+  - type: web
+    name: nasa-app-frontend
+    env: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: frontend/dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        value: https://nasa-app-backend.onrender.com/api 
