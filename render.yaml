@@ -19,7 +19,7 @@ services:
     name: nasa-app-frontend
     env: static
     plan: free
-    buildCommand: cd frontend && npm install --legacy-peer-deps && npm run build
+    buildCommand: cd frontend && npm install --legacy-peer-deps --no-frozen-lockfile && npm run buildcd
     staticPublishPath: frontend/dist
     envVars:
       - key: VITE_API_BASE_URL
